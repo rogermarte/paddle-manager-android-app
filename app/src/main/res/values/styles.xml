@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
     <style name="text_actionbar">
         <item name="android:textSize">@dimen/font_size_huge</item>
         <item name="android:textColor">@android:color/white</item>
+
     </style>
 
     <style name="ToolbarHomeButton">
@@ -15,5 +16,9 @@
         <item name="android:layout_height">@dimen/toolbar_home_button</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
-
+    <style name="divider">
+        <item name="android:background">@color/divider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider</item>
+    </style>
 </resources>

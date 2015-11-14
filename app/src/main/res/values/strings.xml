@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">PadelManager</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_base">BaseActivity</string>
+    <string name="app_name">PaddleManager</string>
+    <string name="player_level">"Nivel: "</string>
+    <string name="players">Jugadores</string>
 </resources>
