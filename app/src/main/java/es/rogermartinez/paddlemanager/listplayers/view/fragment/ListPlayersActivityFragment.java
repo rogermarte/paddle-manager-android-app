@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import javax.inject.Inject;
 
 import es.rogermartinez.paddlemanager.R;
@@ -73,6 +75,9 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
             // specify an adapter (see also next example)
             mAdapter = new ListPlayersAdapter(searchPlayersResult.getPlayers());
             mRecyclerView.setAdapter(mAdapter);
+
+            FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+            fab.attachToRecyclerView(mRecyclerView);
         }
     }
 }
