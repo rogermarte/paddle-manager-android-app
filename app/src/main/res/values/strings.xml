@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">PaddleManager</string>
-    <string name="player_level">"Nivel: "</string>
+    <string name="player_level">Nivel</string>
     <string name="players">Jugadores</string>
+    <string name="player_name">Nombre</string>
+    <string name="player_surname">Apellidos</string>
+    <string name="player_position_both">Ambos</string>
+    <string name="player_position_right">Drive</string>
+    <string name="player_position_left">Reves</string>
+    <string name="add_player">Añadir jugador</string>
 </resources>

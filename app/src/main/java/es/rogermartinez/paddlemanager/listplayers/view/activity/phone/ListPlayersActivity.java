@@ -29,7 +29,7 @@ public class ListPlayersActivity extends BaseActivity {
 
     @Override
     public MaterialMenuDrawable.IconState getDefaultState() {
-        return MaterialMenuDrawable.IconState.ARROW;
+        return MaterialMenuDrawable.IconState.BURGER;
     }
 
     @Override

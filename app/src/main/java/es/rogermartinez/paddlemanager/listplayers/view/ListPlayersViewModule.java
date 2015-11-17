@@ -22,9 +22,4 @@ public class ListPlayersViewModule {
     PrepareListPlayersController providePlayersController(SearchPlayers searchPlayers){
         return new PrepareListPlayersController(searchPlayers);
     }
-
-    @Provides
-    SearchPlayers provideSearchPlayers(SearchPlayersJob searchPlayersJob){
-        return searchPlayersJob;
-    }
 }

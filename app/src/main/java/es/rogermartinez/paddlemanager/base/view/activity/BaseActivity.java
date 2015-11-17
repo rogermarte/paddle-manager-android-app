@@ -1,14 +1,17 @@
 package es.rogermartinez.paddlemanager.base.view.activity;
 
 import android.app.ActionBar;
-import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
@@ -23,7 +26,7 @@ import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.errors.ViewErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.errors.ViewErrorHandler;
 
-public abstract class BaseActivity extends Activity implements ViewErrorEvent {
+public abstract class BaseActivity extends AppCompatActivity implements ViewErrorEvent {
 
     @Inject
     Bus bus;
@@ -32,6 +35,7 @@ public abstract class BaseActivity extends Activity implements ViewErrorEvent {
 
     protected MaterialMenuView materialMenuView;
     protected Toolbar toolbar;
+    protected View toolbarShadow;
 
     //These two icons should be set at the onCreate() of the childs
     public static MaterialMenuDrawable.IconState oldIcon = null;
@@ -53,6 +57,46 @@ public abstract class BaseActivity extends Activity implements ViewErrorEvent {
         ButterKnife.bind(this);
         viewErrorHandler = new ViewErrorHandler(bus, this);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //viewErrorHandler.register();
+        manageMaterialMenuScreenStart();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        findToolbarComponentAndSetColors();
+        initCustomActionBar();
+    }
+
+    boolean toolbarColorAndShadorHasBeenSet = false;
+
+    private void findToolbarComponentAndSetColors() {
+        if (!toolbarColorAndShadorHasBeenSet) {
+            toolbarColorAndShadorHasBeenSet = true;
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            //toolbarShadow = findViewById(R.id.toolbarShadow);
+            if (toolbar != null) {
+                if (!hasAlphableToolbar()) {
+                    toolbar.setBackgroundColor(getResources().getColor(R.color.action_bar_background));
+                    // getColor(R.color.action_bar_background));
+                    //if (toolbarShadow != null) {
+                    //    toolbarShadow.getBackground().setAlpha(ALPHA_MAX_VALUE);
+                    //}
+                } else {
+                    toolbarShadow.getBackground().setAlpha(0);
+                }
+                setSupportActionBar(toolbar);
+            }
+        }
+    }
+
+    protected boolean hasAlphableToolbar() {
+        return false;
     }
 
     protected void initCustomActionBar() {
@@ -79,6 +123,7 @@ public abstract class BaseActivity extends Activity implements ViewErrorEvent {
             });
         }
     }
+
     @Override
     public void setTitle(CharSequence title) {
         TextView customTitle = (TextView) findViewById(R.id.customTitle);
@@ -98,6 +143,37 @@ public abstract class BaseActivity extends Activity implements ViewErrorEvent {
         boolean needsScopes = ErrorEvent.ACTIONS_REQUEST_NEW_SCOPES == event.getAction();
         //TODO Errores
 
+    }
+
+    protected void manageMaterialMenuScreenStart() {
+        if (materialMenuView != null) {
+            if (oldIcon == null) {
+                oldIcon = getDefaultState();
+            }
+//            Log.d("ICON", "setState() to " + oldIcon.name());
+            materialMenuView.setState(oldIcon);
+            materialMenuView.invalidate();
+        }
+
+        changeMenuIconDelayed();
+    }
+
+    public void changeMenuIconDelayed() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    oldIcon = getDefaultState();
+                    if (materialMenuView != null) {
+//                        Log.d("ICON", "animateState() to " + oldIcon.name());
+                        materialMenuView.animateState(oldIcon);
+                    }
+//                        nextIcon = null;
+                } catch (Exception e) {
+                    Log.e("ERROR", "Animating the icon after the screen is launched", e);
+                }
+            }
+        }, 550);
     }
 
     protected abstract boolean showError(ErrorEvent event);

@@ -8,6 +8,10 @@ import java.util.List;
 import dagger.ObjectGraph;
 import es.rogermartinez.paddlemanager.base.utils.module.AndroidModule;
 import es.rogermartinez.paddlemanager.base.domain.GlobalDomainModule;
+import es.rogermartinez.paddlemanager.editplayer.datasource.EditPlayerDatasourceModule;
+import es.rogermartinez.paddlemanager.editplayer.domain.EditPlayerDomainModule;
+import es.rogermartinez.paddlemanager.editplayer.view.EditPlayerViewModule;
+import es.rogermartinez.paddlemanager.listplayers.domain.ListPlayerDomainModule;
 import es.rogermartinez.paddlemanager.listplayers.view.ListPlayersViewModule;
 import es.rogermartinez.paddlemanager.search.datasource.SearchPlayerDataSourceModule;
 
@@ -34,6 +38,10 @@ public class BaseApplication extends Application {
                 new AndroidModule(this),
                 new GlobalDomainModule(),
                 new ListPlayersViewModule(),
-                new SearchPlayerDataSourceModule());
+                new ListPlayerDomainModule(),
+                new SearchPlayerDataSourceModule(),
+                new EditPlayerViewModule(),
+                new EditPlayerDomainModule(),
+                new EditPlayerDatasourceModule());
     }
 }

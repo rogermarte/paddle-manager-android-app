@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="es.rogermartinez.paddlemanager.editplayer.view.fragment.EditPlayerFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:visibility="visible"
+        tools:visibility="visible">
+        <EditText
+            android:id="@+id/et_player_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/player_name"/>
+        <EditText
+            android:id="@+id/et_player_surname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/player_surname"/>
+        <EditText
+            android:id="@+id/et_player_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/player_level"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/r_player_level_both"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/player_position_both"/>
+            <RadioButton android:id="@+id/r_player_level_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/player_position_right"/>
+            <RadioButton android:id="@+id/r_player_level_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/player_position_left"/>
+            <Button
+                android:id="@+id/btn_add_player"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_player"
+                android:onClick="onClick"/>
+            />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</RelativeLayout>
