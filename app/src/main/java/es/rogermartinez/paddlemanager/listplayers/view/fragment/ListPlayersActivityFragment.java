@@ -1,21 +1,23 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.melnykov.fab.FloatingActionButton;
-
 import javax.inject.Inject;
 
+import butterknife.OnClick;
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
+import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
 import es.rogermartinez.paddlemanager.listplayers.view.adapter.ListPlayersAdapter;
 import es.rogermartinez.paddlemanager.listplayers.view.controller.PrepareListPlayersController;
 import es.rogermartinez.paddlemanager.search.domain.model.SearchPlayersResult;
@@ -34,7 +36,6 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
 
 
     private View rootView;
-    private Context applicationContext = null;
 
     public ListPlayersActivityFragment() {
     }
@@ -43,7 +44,6 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_players, container, false);
-        applicationContext = getActivity().getApplicationContext();
         return rootView;
     }
 
@@ -77,7 +77,12 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
             mRecyclerView.setAdapter(mAdapter);
 
             FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-            fab.attachToRecyclerView(mRecyclerView);
+
         }
+    }
+    @OnClick(R.id.fab)
+    public void addPlayer(){
+        Intent intent = new Intent(getActivity(), EditPlayerActivity.class);
+        startActivity(intent);
     }
 }

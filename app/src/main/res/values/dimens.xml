@@ -7,4 +7,6 @@
     <dimen name="divider">1dp</dimen>
     <dimen name="font_size_large">18sp</dimen>
     <dimen name="gap_high">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_pressedTranslationZ">12dp</dimen>
 </resources>

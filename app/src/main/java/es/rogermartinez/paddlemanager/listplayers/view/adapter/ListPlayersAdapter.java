@@ -55,7 +55,7 @@ public class ListPlayersAdapter extends RecyclerView.Adapter<ListPlayersAdapter.
         // - replace the contents of the view with that element
         Player player = mDataset.get(position);
         holder.mTVPlayerName.setText(player.getName() + " " + player.getSurname());
-        holder.mTVPlayerLevel.setText(holder.mTVPlayerLevel.getText() + " " + player.getLevel());
+        holder.mTVPlayerLevel.setText(String.valueOf(player.getLevel()));
 
     }
 
