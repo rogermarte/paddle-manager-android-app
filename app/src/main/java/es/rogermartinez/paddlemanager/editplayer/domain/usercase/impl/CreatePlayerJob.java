@@ -9,6 +9,7 @@ import es.rogermartinez.paddlemanager.base.domain.DomainErrorHandler;
 import es.rogermartinez.paddlemanager.base.domain.interactor.MainThread;
 import es.rogermartinez.paddlemanager.base.domain.interactor.impl.UserCaseJob;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
+import es.rogermartinez.paddlemanager.editplayer.datasource.CreatePlayerDataSource;
 import es.rogermartinez.paddlemanager.editplayer.domain.callback.CreatePlayerCallback;
 import es.rogermartinez.paddlemanager.editplayer.domain.usercase.CreatePlayer;
 
@@ -19,22 +20,26 @@ public class CreatePlayerJob extends UserCaseJob implements CreatePlayer {
 
     private Player player;
     private CreatePlayerCallback callback;
+    private CreatePlayerDataSource createPlayerDataSource;
 
     @Inject
     public CreatePlayerJob(JobManager jobManager, MainThread mainThread,
-                           DomainErrorHandler domainErrorHandler){
+                           DomainErrorHandler domainErrorHandler, CreatePlayerDataSource createPlayerDataSource){
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
+        this.createPlayerDataSource = createPlayerDataSource;
     }
 
 
     @Override
     public void doRun() throws Throwable {
-
+        createPlayerDataSource.createPlayer(player);
+        notifyPlayerCreated();
     }
 
     public void createPlayer(Player player, CreatePlayerCallback callback){
         this.player = player;
         this.callback = callback;
+        jobManager.addJob(this);
     }
 
     private void notifyPlayerCreated(){
