@@ -13,9 +13,6 @@ import java.sql.SQLException;
 
 import es.rogermartinez.paddlemanager.search.datasource.ddbb.model.PlayerDDBBModel;
 
-/**
- * Created by roger.martinez on 13/11/15.
- */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "paddlemanager.db";

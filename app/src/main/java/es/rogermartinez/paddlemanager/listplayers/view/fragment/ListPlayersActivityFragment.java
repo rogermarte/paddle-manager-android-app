@@ -1,21 +1,28 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.melnykov.fab.FloatingActionButton;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.OnClick;
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
+import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
+import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
+import es.rogermartinez.paddlemanager.listplayers.view.activity.phone.ListPlayersActivity;
 import es.rogermartinez.paddlemanager.listplayers.view.adapter.ListPlayersAdapter;
 import es.rogermartinez.paddlemanager.listplayers.view.controller.PrepareListPlayersController;
 import es.rogermartinez.paddlemanager.search.domain.model.SearchPlayersResult;
@@ -32,9 +39,9 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    List<Player> players;
 
     private View rootView;
-    private Context applicationContext = null;
 
     public ListPlayersActivityFragment() {
     }
@@ -43,7 +50,6 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_players, container, false);
-        applicationContext = getActivity().getApplicationContext();
         return rootView;
     }
 
@@ -63,6 +69,8 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Override
     public void seachPlayersComplete(SearchPlayersResult searchPlayersResult) {
         if(isAdded()) {
+
+            players = searchPlayersResult.getPlayers();
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             mRecyclerView = (RecyclerView)getActivity().findViewById(R.id.rv_players);
@@ -72,12 +80,28 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
             mLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLayoutManager);
 
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
             // specify an adapter (see also next example)
-            mAdapter = new ListPlayersAdapter(searchPlayersResult.getPlayers());
+            mAdapter = new ListPlayersAdapter(players);
             mRecyclerView.setAdapter(mAdapter);
 
             FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-            fab.attachToRecyclerView(mRecyclerView);
+
+        }
+    }
+    @OnClick(R.id.fab)
+    public void addPlayer(){
+        Intent intent = new Intent(getActivity(), EditPlayerActivity.class);
+        startActivityForResult(intent, ListPlayersActivity.CREATE_PLAYER_RESULT_ID);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ListPlayersActivity.CREATE_PLAYER_RESULT_ID){
+            Player p = (Player)data.getSerializableExtra("PLAYER");
+            players.add(p);
+            mAdapter.notifyItemInserted(players.size());
         }
     }
 }

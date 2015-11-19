@@ -15,6 +15,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import es.rogermartinez.paddlemanager.base.daggerutils.ForApplication;
+import es.rogermartinez.paddlemanager.base.datasource.dao.DatabaseHelper;
+import es.rogermartinez.paddlemanager.base.datasource.dao.DatabaseManager;
 import es.rogermartinez.paddlemanager.base.domain.interactor.MainThread;
 import es.rogermartinez.paddlemanager.base.domain.interactor.impl.MainThreadHandler;
 
@@ -63,4 +65,17 @@ public class GlobalDomainModule {
     DomainErrorHandler provideDomainErrorHandler(Bus bus) {
         return new DomainErrorHandler(bus);
     }
+
+    @Provides
+    @Singleton
+    public DatabaseManager provideDbManager(@ForApplication Context context) {
+        return new DatabaseManager(context);
+    }
+
+    @Provides
+    @Singleton
+    public DatabaseHelper provideDataBaseHelper(DatabaseManager dbManager) {
+        return dbManager.getHelper();
+    }
+
 }

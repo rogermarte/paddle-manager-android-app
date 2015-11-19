@@ -11,6 +11,7 @@ import es.rogermartinez.paddlemanager.base.view.activity.BaseActivity;
 
 public class ListPlayersActivity extends BaseActivity {
 
+    public static final int CREATE_PLAYER_RESULT_ID = 200;
     private ListPlayersActivityFragment playersFragment;
 
     @Override
@@ -29,7 +30,7 @@ public class ListPlayersActivity extends BaseActivity {
 
     @Override
     public MaterialMenuDrawable.IconState getDefaultState() {
-        return MaterialMenuDrawable.IconState.ARROW;
+        return MaterialMenuDrawable.IconState.BURGER;
     }
 
     @Override

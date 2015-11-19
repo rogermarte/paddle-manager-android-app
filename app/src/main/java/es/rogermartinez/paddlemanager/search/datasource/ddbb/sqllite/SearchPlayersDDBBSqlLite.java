@@ -1,6 +1,11 @@
 package es.rogermartinez.paddlemanager.search.datasource.ddbb.sqllite;
 
+import com.j256.ormlite.dao.Dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -14,46 +19,22 @@ import es.rogermartinez.paddlemanager.search.domain.model.QueryPlayer;
  */
 public class SearchPlayersDDBBSqlLite implements SearchPlayersDDBB {
 
-    @Inject
-    public SearchPlayersDDBBSqlLite(){
+    private Dao<PlayerDDBBModel, String> playerDao;
 
+    @Inject
+    public SearchPlayersDDBBSqlLite(Dao<PlayerDDBBModel, String> playerDao){
+        this.playerDao = playerDao;
     }
 
     @Override
     public PlayersSearchResultDDBBModel search(QueryPlayer queryPlayer) {
-        PlayerDDBBModel[] players = {
-                new PlayerDDBBModel("FB", "Fernando", "Belasteguin", 100),
-                new PlayerDDBBModel("JMD", "Juan", "Martin Diaz", 99),
-                new PlayerDDBBModel("PL", "Pablo", "Lima", 98),
-                new PlayerDDBBModel("PN", "Paquito", "Navarro", 97),
-                new PlayerDDBBModel("SG", "Sanyo", "Gutierrez", 96),
-                new PlayerDDBBModel("JM", "Juani", "Mieres", 95),
-                new PlayerDDBBModel("MDS", "Matias", "Diaz Sangiorgio", 94),
-                new PlayerDDBBModel("MS", "Maxi", "Sanchez", 93),
-                new PlayerDDBBModel("CG", "Cristian", "Gutierrez", 92),
-                new PlayerDDBBModel("ML", "Miguel", "Lamperti", 91),
-                new PlayerDDBBModel("FB", "Fernando", "Belasteguin", 100),
-                new PlayerDDBBModel("JMD", "Juan", "Martin Diaz", 99),
-                new PlayerDDBBModel("PL", "Pablo", "Lima", 98),
-                new PlayerDDBBModel("PN", "Paquito", "Navarro", 97),
-                new PlayerDDBBModel("SG", "Sanyo", "Gutierrez", 96),
-                new PlayerDDBBModel("JM", "Juani", "Mieres", 95),
-                new PlayerDDBBModel("MDS", "Matias", "Diaz Sangiorgio", 94),
-                new PlayerDDBBModel("MS", "Maxi", "Sanchez", 93),
-                new PlayerDDBBModel("CG", "Cristian", "Gutierrez", 92),
-                new PlayerDDBBModel("ML", "Miguel", "Lamperti", 91),
-                new PlayerDDBBModel("FB", "Fernando", "Belasteguin", 100),
-                new PlayerDDBBModel("JMD", "Juan", "Martin Diaz", 99),
-                new PlayerDDBBModel("PL", "Pablo", "Lima", 98),
-                new PlayerDDBBModel("PN", "Paquito", "Navarro", 97),
-                new PlayerDDBBModel("SG", "Sanyo", "Gutierrez", 96),
-                new PlayerDDBBModel("JM", "Juani", "Mieres", 95),
-                new PlayerDDBBModel("MDS", "Matias", "Diaz Sangiorgio", 94),
-                new PlayerDDBBModel("MS", "Maxi", "Sanchez", 93),
-                new PlayerDDBBModel("CG", "Cristian", "Gutierrez", 92),
-                new PlayerDDBBModel("ML", "Miguel", "Lamperti", 91)
-        };
-        PlayersSearchResultDDBBModel playersSearchResultDDBBModel = new PlayersSearchResultDDBBModel(Arrays.asList(players));
+        List<PlayerDDBBModel> players = new ArrayList<>();
+        try {
+            players = playerDao.queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        PlayersSearchResultDDBBModel playersSearchResultDDBBModel = new PlayersSearchResultDDBBModel(players);
         return playersSearchResultDDBBModel;
     }
 }

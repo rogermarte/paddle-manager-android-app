@@ -27,7 +27,8 @@ public class SearchPlayersJob extends UserCaseJob implements SearchPlayers {
     private SearchPlayerDataSource searchDataSource;
 
     @Inject
-    SearchPlayersJob(JobManager jobManager, MainThread mainThread, DomainErrorHandler domainErrorHandler, SearchPlayerDataSource searchDataSource
+    SearchPlayersJob(JobManager jobManager, MainThread mainThread,
+                     DomainErrorHandler domainErrorHandler, SearchPlayerDataSource searchDataSource
                      ){
         super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
         this.searchDataSource = searchDataSource;

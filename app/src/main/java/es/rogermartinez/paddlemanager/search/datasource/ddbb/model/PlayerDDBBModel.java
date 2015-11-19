@@ -1,7 +1,11 @@
 package es.rogermartinez.paddlemanager.search.datasource.ddbb.model;
 
+import android.support.annotation.NonNull;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import es.rogermartinez.paddlemanager.base.domain.model.Player;
 
 /**
  * Created by roger.martinez on 13/11/15.
@@ -9,8 +13,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "player")
 public class PlayerDDBBModel {
 
-    @DatabaseField(id=true)
-    private String id = "";
+    @DatabaseField(generatedId = true)
+    private long id;
 
     @DatabaseField
     private String name = "";
@@ -21,18 +25,22 @@ public class PlayerDDBBModel {
     @DatabaseField
     private int level = 0;
 
-    public PlayerDDBBModel(String id, String name, String surname, int level){
+    public PlayerDDBBModel(){
+
+    }
+
+    public PlayerDDBBModel(long id, String name, String surname, int level){
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.level = level;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
