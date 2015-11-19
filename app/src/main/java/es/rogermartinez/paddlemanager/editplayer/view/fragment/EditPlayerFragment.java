@@ -1,5 +1,7 @@
 package es.rogermartinez.paddlemanager.editplayer.view.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +55,6 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
     @OnClick(R.id.btn_add_player)
     public void createPlayer(){
         Player player = new Player();
-        player.setId("a");
         player.setName(mPlayerName.getText().toString());
         player.setSurname(mPlayerSurname.getText().toString());
         player.setLevel(Integer.parseInt(mPlayerLevel.getText().toString()));
@@ -75,7 +76,10 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
     @Override
     public void createPlayerComplete(Player player) {
         if(isAdded()){
-
+            Intent intent = getActivity().getIntent();
+            intent.putExtra("PLAYER", player);
+            getActivity().setResult(Activity.RESULT_OK, intent);
+            getActivity().finish();
         }
     }
 }

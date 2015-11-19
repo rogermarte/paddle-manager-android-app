@@ -12,11 +12,11 @@ import es.rogermartinez.paddlemanager.search.datasource.ddbb.model.PlayerDDBBMod
 
 public class CreatePlayerDataSourceImpl implements CreatePlayerDataSource {
 
+    private Dao<PlayerDDBBModel, String> playerDao;
+
     @Inject
-    Dao<PlayerDDBBModel, String> playerDao;
-
-    public CreatePlayerDataSourceImpl(){
-
+    public CreatePlayerDataSourceImpl(Dao<PlayerDDBBModel, String> playerDao){
+        this.playerDao = playerDao;
     }
 
     @Override

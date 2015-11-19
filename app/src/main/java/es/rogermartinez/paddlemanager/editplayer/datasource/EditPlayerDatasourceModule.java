@@ -13,9 +13,4 @@ public class EditPlayerDatasourceModule {
     public CreatePlayerDataSource providesCreatePlayerDataSource(CreatePlayerDataSourceImpl dataSource){
         return dataSource;
     }
-
-    @Provides
-    public CreatePlayerDataSourceImpl providesCreatePlayerDataSourceImpl(){
-        return new CreatePlayerDataSourceImpl();
-    }
 }
