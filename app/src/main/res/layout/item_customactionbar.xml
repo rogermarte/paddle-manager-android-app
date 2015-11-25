@@ -16,10 +16,6 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.balysv.materialmenu.MaterialMenuView
-            android:id="@+id/action_bar_menu"
-            style="@style/ToolbarHomeButton" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

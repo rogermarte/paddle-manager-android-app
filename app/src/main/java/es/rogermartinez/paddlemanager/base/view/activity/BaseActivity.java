@@ -1,20 +1,13 @@
 package es.rogermartinez.paddlemanager.base.view.activity;
 
 import android.app.ActionBar;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-
-import com.balysv.materialmenu.MaterialMenuDrawable;
-import com.balysv.materialmenu.MaterialMenuView;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -33,19 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
 
     protected ViewErrorHandler viewErrorHandler;
 
-    protected MaterialMenuView materialMenuView;
     protected Toolbar toolbar;
     protected View toolbarShadow;
-
-    //These two icons should be set at the onCreate() of the childs
-    public static MaterialMenuDrawable.IconState oldIcon = null;
-    //  public static MaterialMenuDrawable.IconState nextIcon = null;
 
     /**
      * @return the IconState that this Activity should show by default.
      * Usually it will be MaterialMenuDrawable.IconState.ARROW or MaterialMenuDrawable.IconState.BURGER
      */
-    public abstract MaterialMenuDrawable.IconState getDefaultState();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +49,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
     @Override
     protected void onResume() {
         super.onResume();
-        //viewErrorHandler.register();
-        manageMaterialMenuScreenStart();
     }
 
     @Override
@@ -107,20 +92,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setDisplayShowCustomEnabled(true);
-            materialMenuView = (MaterialMenuView) toolbar.findViewById(R.id.action_bar_menu);
-            materialMenuView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (view.getId() == R.id.action_bar_menu) {
-                        // random state on click
-//                    materialButtonState = generateMaterialMenuState(materialButtonState);
-//                    materialMenuView.animatePressedState(convertMaterialMenuIntToState(materialButtonState));
-//                    return;
-
-                        onBackPressed();
-                    }
-                }
-            });
         }
     }
 
@@ -144,37 +115,5 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
         //TODO Errores
 
     }
-
-    protected void manageMaterialMenuScreenStart() {
-        if (materialMenuView != null) {
-            if (oldIcon == null) {
-                oldIcon = getDefaultState();
-            }
-//            Log.d("ICON", "setState() to " + oldIcon.name());
-            materialMenuView.setState(oldIcon);
-            materialMenuView.invalidate();
-        }
-
-        changeMenuIconDelayed();
-    }
-
-    public void changeMenuIconDelayed() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    oldIcon = getDefaultState();
-                    if (materialMenuView != null) {
-//                        Log.d("ICON", "animateState() to " + oldIcon.name());
-                        materialMenuView.animateState(oldIcon);
-                    }
-//                        nextIcon = null;
-                } catch (Exception e) {
-                    Log.e("ERROR", "Animating the icon after the screen is launched", e);
-                }
-            }
-        }, 550);
-    }
-
     protected abstract boolean showError(ErrorEvent event);
 }

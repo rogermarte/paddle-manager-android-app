@@ -2,8 +2,6 @@ package es.rogermartinez.paddlemanager.listplayers.view.activity.phone;
 
 import android.os.Bundle;
 
-import com.balysv.materialmenu.MaterialMenuDrawable;
-
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.listplayers.view.fragment.ListPlayersActivityFragment;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
@@ -26,11 +24,6 @@ public class ListPlayersActivity extends BaseActivity {
             playersFragment = new ListPlayersActivityFragment();
             getFragmentManager().beginTransaction().add(R.id.container, playersFragment).commit();
         }
-    }
-
-    @Override
-    public MaterialMenuDrawable.IconState getDefaultState() {
-        return MaterialMenuDrawable.IconState.BURGER;
     }
 
     @Override
