@@ -3,9 +3,14 @@ package es.rogermartinez.paddlemanager.base.view.activity;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -60,6 +65,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
     @Override
     protected void onStart() {
         super.onStart();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     public void inject(Object object) {
