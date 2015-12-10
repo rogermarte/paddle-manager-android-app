@@ -2,9 +2,15 @@ package es.rogermartinez.paddlemanager.base.view.activity;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.os.Debug;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,7 +33,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
     protected ViewErrorHandler viewErrorHandler;
 
     protected Toolbar toolbar;
-    protected View toolbarShadow;
 
     /**
      * @return the IconState that this Activity should show by default.
@@ -39,12 +44,18 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.screen_fade_in, R.anim.screen_fade_out);
         inject(this);
-
         ButterKnife.setDebug(BuildConfig.DEBUG);
         ButterKnife.bind(this);
         viewErrorHandler = new ViewErrorHandler(bus, this);
-
     }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
 
     @Override
     protected void onResume() {
@@ -54,53 +65,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
     @Override
     protected void onStart() {
         super.onStart();
-        findToolbarComponentAndSetColors();
-        initCustomActionBar();
-    }
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    boolean toolbarColorAndShadorHasBeenSet = false;
-
-    private void findToolbarComponentAndSetColors() {
-        if (!toolbarColorAndShadorHasBeenSet) {
-            toolbarColorAndShadorHasBeenSet = true;
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            //toolbarShadow = findViewById(R.id.toolbarShadow);
-            if (toolbar != null) {
-                if (!hasAlphableToolbar()) {
-                    toolbar.setBackgroundColor(getResources().getColor(R.color.action_bar_background));
-                    // getColor(R.color.action_bar_background));
-                    //if (toolbarShadow != null) {
-                    //    toolbarShadow.getBackground().setAlpha(ALPHA_MAX_VALUE);
-                    //}
-                } else {
-                    toolbarShadow.getBackground().setAlpha(0);
-                }
-                setSupportActionBar(toolbar);
-            }
-        }
-    }
-
-    protected boolean hasAlphableToolbar() {
-        return false;
-    }
-
-    protected void initCustomActionBar() {
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false);
-            actionBar.setDisplayShowHomeEnabled(false);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-        }
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        TextView customTitle = (TextView) findViewById(R.id.customTitle);
-        if (customTitle != null) {
-            customTitle.setText(title);
-        }
     }
 
     public void inject(Object object) {

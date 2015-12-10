@@ -1,5 +1,6 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -98,7 +99,7 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == ListPlayersActivity.CREATE_PLAYER_RESULT_ID){
+        if(resultCode == Activity.RESULT_OK && requestCode == ListPlayersActivity.CREATE_PLAYER_RESULT_ID){
             Player p = (Player)data.getSerializableExtra("PLAYER");
             players.add(p);
             mAdapter.notifyItemInserted(players.size());

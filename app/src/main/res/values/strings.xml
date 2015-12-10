@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PaddleManager</string>
+    <string name="app_name">Pádel Manager</string>
     <string name="player_level">Nivel</string>
     <string name="players">Jugadores</string>
     <string name="player_name">Nombre</string>
@@ -8,4 +8,13 @@
     <string name="player_position_right">Drive</string>
     <string name="player_position_left">Reves</string>
     <string name="add_player">Añadir jugador</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="githuburl">github.com/rogermarte/paddle-manager-android-app</string>
+    <string name="menudrawermatches">Partidos</string>
+    <string name="menudrawerplayers">Jugadores</string>
+    <string name="menudrawerstats">Estadísticas</string>
+    <string name="menudrawerinfo">Info</string>
+    <string name="menudrawersecondarymenu">Otras opciones</string>
+    <string name="action_settings">Settings</string>
 </resources>

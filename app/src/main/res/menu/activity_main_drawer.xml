@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_players"
+            android:title="@string/menudrawerplayers" />
+        <item
+            android:id="@+id/nav_matches"
+            android:title="@string/menudrawermatches" />
+        <item
+            android:id="@+id/nav_stats"
+            android:title="@string/menudrawerstats" />
+    </group>
+    <item android:title="@string/menudrawersecondarymenu">
+        <menu>
+            <item
+                android:id="@+id/nav_info"
+                android:title="@string/menudrawerinfo" />
+        </menu>
+    </item>
+</menu>
