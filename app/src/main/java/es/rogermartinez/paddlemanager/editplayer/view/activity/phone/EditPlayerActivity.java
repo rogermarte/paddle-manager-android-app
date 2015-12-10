@@ -2,8 +2,6 @@ package es.rogermartinez.paddlemanager.editplayer.view.activity.phone;
 
 import android.os.Bundle;
 
-import com.balysv.materialmenu.MaterialMenuDrawable;
-
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.activity.BaseActivity;
@@ -27,11 +25,6 @@ public class EditPlayerActivity extends BaseActivity {
             fragment = new EditPlayerFragment();
             getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
         }
-    }
-
-    @Override
-    public MaterialMenuDrawable.IconState getDefaultState() {
-        return MaterialMenuDrawable.IconState.ARROW;
     }
 
     @Override

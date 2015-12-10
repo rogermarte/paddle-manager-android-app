@@ -1,5 +1,7 @@
 package es.rogermartinez.paddlemanager.editplayer.view.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.RadioButton;
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
@@ -33,13 +36,6 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
     @Bind(R.id.et_player_level)
     EditText mPlayerLevel;
 
-    @Bind(R.id.r_player_level_both)
-    RadioButton mPlayerLevelBoth;
-    @Bind(R.id.r_player_level_left)
-    RadioButton mPlayerLevelLeft;
-    @Bind(R.id.r_player_level_right)
-    RadioButton mPlayerLevelRight;
-
     private View rootView;
 
     @Override
@@ -56,6 +52,15 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
         controller.getPlayer();
     }
 
+    @OnClick(R.id.btn_add_player)
+    public void createPlayer(){
+        Player player = new Player();
+        player.setName(mPlayerName.getText().toString());
+        player.setSurname(mPlayerSurname.getText().toString());
+        player.setLevel(Integer.parseInt(mPlayerLevel.getText().toString()));
+        controller.createPlayer(player);
+    }
+
     @Override
     public boolean showError(ErrorEvent event) {
         return false;
@@ -65,6 +70,16 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
     public void findPlayerComplete(Player player) {
         if (isAdded()){
 
+        }
+    }
+
+    @Override
+    public void createPlayerComplete(Player player) {
+        if(isAdded()){
+            Intent intent = getActivity().getIntent();
+            intent.putExtra("PLAYER", player);
+            getActivity().setResult(Activity.RESULT_OK, intent);
+            getActivity().finish();
         }
     }
 }

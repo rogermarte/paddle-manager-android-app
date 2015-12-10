@@ -2,6 +2,7 @@ package es.rogermartinez.paddlemanager.editplayer.view;
 
 import dagger.Module;
 import dagger.Provides;
+import es.rogermartinez.paddlemanager.editplayer.domain.usercase.CreatePlayer;
 import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
 import es.rogermartinez.paddlemanager.editplayer.view.controller.PrepareEditPlayerController;
 import es.rogermartinez.paddlemanager.editplayer.view.fragment.EditPlayerFragment;
@@ -14,7 +15,7 @@ import es.rogermartinez.paddlemanager.editplayer.view.fragment.EditPlayerFragmen
 public class EditPlayerViewModule {
 
     @Provides
-    public PrepareEditPlayerController provideEditPlayerController(){
-        return new PrepareEditPlayerController();
+    public PrepareEditPlayerController provideEditPlayerController(CreatePlayer createPlayer){
+        return new PrepareEditPlayerController(createPlayer);
     }
 }

@@ -1,19 +1,21 @@
 package es.rogermartinez.paddlemanager.base.domain.model;
 
+import java.io.Serializable;
+
 /**
  * Created by roger.martinez on 13/11/15.
  */
-public class Player {
-    private String id = "";
+public class Player implements Serializable {
+    private long id;
     private String name = "";
     private String surname = "";
     private int level = 0;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
