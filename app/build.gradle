@@ -59,4 +59,5 @@ dependencies {
     compile 'com.path:android-priority-jobqueue:1.1'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.github.ganfra:material-spinner:1.1.1'
 }

@@ -8,8 +8,10 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private long id;
     private String name = "";
-    private String surname = "";
     private int level = 0;
+    private int sex = 0;
+    private int position = 0;
+    private String comment = "";
 
     public long getId() {
         return id;
@@ -27,19 +29,35 @@ public class Player implements Serializable {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public int getLevel() {
         return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

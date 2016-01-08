@@ -9,5 +9,11 @@
     <color name="dayBlue">#2088c2</color>
     <color name="divider">@color/darkestShiro</color>
     <color name="action_bar_background">@color/dayBlue</color>
+    <color name="font_color_sec">@color/softScript</color>
+    <color name="softScript">#999999</color>
+    <color name="edit_text_bottom_line">@color/restingKatana</color>
+    <color name="restingKatana">#d5e1e5</color>
+    <color name="error">@color/redWedding</color>
+    <color name="redWedding">#dd2524</color>
 
 </resources>
