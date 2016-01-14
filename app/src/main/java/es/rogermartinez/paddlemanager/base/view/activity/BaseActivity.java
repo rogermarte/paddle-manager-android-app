@@ -18,6 +18,7 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.application.BaseApplication;
