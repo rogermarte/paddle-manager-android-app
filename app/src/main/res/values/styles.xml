@@ -28,6 +28,12 @@
         <item name="android:layout_height">@dimen/toolbar_home_button</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
+    <style name="ToolbarBackButton">
+        <item name="navigationIcon">@android:drawable/ic_menu_upload_y</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
     <style name="divider">
         <item name="android:background">@color/divider</item>
         <item name="android:layout_width">match_parent</item>
