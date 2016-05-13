@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="levels_array">
+        <item>Principiante</item>
+        <item>Principiante alto</item>
+        <item>Iniciación</item>
+        <item>Iniciación alto</item>
+        <item>Básico</item>
+        <item>Básico alto</item>
+        <item>Intermedio</item>
+        <item>Intermedio alto</item>
+        <item>Avanzado</item>
+    </string-array>
+</resources>

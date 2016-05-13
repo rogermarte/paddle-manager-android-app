@@ -29,7 +29,7 @@ public class CreatePlayerDataSourceImpl implements CreatePlayerDataSource {
     }
 
     private PlayerDDBBModel mapperPlayer(Player player) {
-        PlayerDDBBModel p = new PlayerDDBBModel(player.getId(), player.getName(), player.getSurname(), player.getLevel());
+        PlayerDDBBModel p = new PlayerDDBBModel(player.getId(), player.getName(), player.getLevel(), player.getSex(), player.getPosition(), player.getComment());
         return p;
     }
 }

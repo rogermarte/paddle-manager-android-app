@@ -37,7 +37,6 @@ public class SearchPlayerDataSourceFromBBDD implements SearchPlayerDataSource {
     private Player convert(PlayerDDBBModel player) {
         Player p = new Player();
         p.setName(player.getName());
-        p.setSurname(player.getSurname());
         p.setLevel(player.getLevel());
         p.setId(player.getId());
         return p;
