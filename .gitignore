@@ -4,5 +4,4 @@
 .DS_Store
 /build
 /captures
-/PaddeManager.iml
-/paddle-manager-android-app.iml
+*.iml
