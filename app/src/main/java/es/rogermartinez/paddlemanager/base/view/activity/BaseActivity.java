@@ -1,30 +1,22 @@
 package es.rogermartinez.paddlemanager.base.view.activity;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.os.Debug;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.appcompat.BuildConfig;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import es.rogermartinez.paddlemanager.R;
-import es.rogermartinez.paddlemanager.base.application.BaseApplication;
+import es.rogermartinez.paddlemanager.base.application.AndroidApplication;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.errors.ViewErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.errors.ViewErrorHandler;
+import es.rogermartinez.paddlemanager.injector.ActivityModule;
+import es.rogermartinez.paddlemanager.injector.ApplicationComponent;
 
 public abstract class BaseActivity extends AppCompatActivity implements ViewErrorEvent {
 
@@ -75,4 +67,12 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
 
     }
     protected abstract boolean showError(ErrorEvent event);
+
+    protected ApplicationComponent getApplicationComponent() {
+        return ((AndroidApplication)getApplication()).getApplicationComponent();
+    }
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
 }

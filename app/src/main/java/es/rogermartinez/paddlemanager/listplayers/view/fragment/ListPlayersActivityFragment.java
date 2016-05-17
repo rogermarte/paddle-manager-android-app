@@ -1,10 +1,8 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,15 +17,11 @@ import javax.inject.Inject;
 
 import butterknife.OnClick;
 import es.rogermartinez.paddlemanager.R;
-import es.rogermartinez.paddlemanager.base.AndroidComponent;
-import es.rogermartinez.paddlemanager.base.DaggerAndroidComponent;
-import es.rogermartinez.paddlemanager.base.DaggerGlobalComponent;
-import es.rogermartinez.paddlemanager.base.GlobalComponent;
-import es.rogermartinez.paddlemanager.base.domain.GlobalDomainModule;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
 import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
+import es.rogermartinez.paddlemanager.injector.ListPlayersComponent;
 import es.rogermartinez.paddlemanager.listplayers.view.activity.phone.ListPlayersActivity;
 import es.rogermartinez.paddlemanager.listplayers.view.adapter.ListPlayersAdapter;
 import es.rogermartinez.paddlemanager.listplayers.view.controller.PrepareListPlayersController;
@@ -44,8 +38,6 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private GlobalComponent component;
-
 
     List<Player> players;
 
@@ -65,16 +57,15 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        component = DaggerGlobalComponent
-                .builder()
-
-                .build();
-        component.inject(this);
-
         controller.setView(this);
         controller.search();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getComponent(ListPlayersComponent.class).inject(this);
+    }
 
     @Override
     public boolean showError(ErrorEvent event) {

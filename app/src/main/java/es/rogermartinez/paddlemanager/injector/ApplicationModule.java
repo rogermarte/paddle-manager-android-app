@@ -1,4 +1,4 @@
-package es.rogermartinez.paddlemanager.base.utils.module;
+package es.rogermartinez.paddlemanager.injector;
 
 /*
  * Copyright (C) 2013 Square, Inc.
@@ -18,36 +18,60 @@ package es.rogermartinez.paddlemanager.base.utils.module;
 
 import android.content.Context;
 
+import com.path.android.jobqueue.JobManager;
 import com.squareup.otto.Bus;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import es.rogermartinez.paddlemanager.base.application.AndroidApplication;
 import es.rogermartinez.paddlemanager.base.daggerutils.ForApplication;
-import es.rogermartinez.paddlemanager.base.application.BaseApplication;
+import es.rogermartinez.paddlemanager.base.domain.interactor.MainThread;
+import es.rogermartinez.paddlemanager.base.domain.interactor.impl.MainThreadHandler;
+import es.rogermartinez.paddlemanager.base.utils.module.MainThreadBus;
+import es.rogermartinez.paddlemanager.search.domain.model.QueryPlayer;
 
 /**
  * A module for Android-specific dependencies which require a {@link android.content.Context} or
  * {@link android.app.Application} to create.
  */
 @Module
-public class AndroidModule {
-    private final BaseApplication application;
+public class ApplicationModule {
+    private final AndroidApplication application;
 
-    public AndroidModule(BaseApplication application) {
+    public ApplicationModule(AndroidApplication application) {
         this.application = application;
     }
 
-    /**
-     * Allow the application context to be injected but require that it be annotated with
-     * {@link ForApplication @Annotation} to explicitly differentiate it from an activity context.
-     */
+    @Singleton
     @Provides
     Context provideApplicationContext() {
         return application;
     }
 
+    @Singleton
     @Provides
     Bus provideBusProvider() {	return new MainThreadBus(); }
+
+    @Singleton
+    @Provides
+    JobManager provideJobManager() {
+        return new JobManager(application);
+    }
+
+    @Singleton
+    @Provides
+    MainThread provideMainThread(MainThreadHandler mainThreadHandler) {
+        return mainThreadHandler;
+    }
+
+    @Singleton
+    @Provides
+    public Map<QueryPlayer, QueryPlayer> provideSearchPlayersCache() {
+        return new ConcurrentHashMap<QueryPlayer, QueryPlayer>();
+    }
 }

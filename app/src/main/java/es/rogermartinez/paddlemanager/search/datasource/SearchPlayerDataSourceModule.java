@@ -12,6 +12,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import es.rogermartinez.paddlemanager.base.daggerutils.PerActivity;
 import es.rogermartinez.paddlemanager.base.datasource.dao.DatabaseHelper;
 import es.rogermartinez.paddlemanager.search.datasource.ddbb.SearchPlayersDDBB;
 import es.rogermartinez.paddlemanager.search.datasource.ddbb.model.PlayerDDBBModel;
@@ -28,22 +29,19 @@ public class SearchPlayerDataSourceModule {
     private static final String LOGTAG = "SearchPlayerDSModule";
 
     @Provides
+    @PerActivity
     public SearchPlayerDataSource provideSeachDataSource(SearchPlayerDataSourceFromBBDD searchDataSource) {
         return searchDataSource;
     }
 
     @Provides
+    @PerActivity
     public SearchPlayersDDBB provideSearchPlayersDDBB(SearchPlayersDDBBSqlLite searchPlayersDDBBSqlLite) {
         return searchPlayersDDBBSqlLite;
     }
 
-    @Singleton
     @Provides
-    public Map<QueryPlayer, QueryPlayer> provideSearchPlayersCache() {
-        return new ConcurrentHashMap<QueryPlayer, QueryPlayer>();
-    }
-
-    @Provides
+    @PerActivity
     public Dao<PlayerDDBBModel, String> provideSearchDDBBDao(DatabaseHelper dbHelper){
         try {
             return dbHelper.getPlayersDao();
@@ -54,6 +52,7 @@ public class SearchPlayerDataSourceModule {
     }
 
     @Provides
+    @PerActivity
     public QueryPlayerDDBBMapper provideQueryPlayerMapper() {
         return new QueryPlayerDDBBMapper();
     }
