@@ -23,17 +23,14 @@ import es.rogermartinez.paddlemanager.base.domain.interactor.impl.MainThreadHand
 /**
  * This module provide global dependencies for all domain objects.
  */
-@Module(complete = false,
-        library = true)
+@Module
 public class GlobalDomainModule {
     @Provides
-    @Singleton
-    JobManager provideJobManager(@ForApplication Context context) {
+    JobManager provideJobManager(Context context) {
         return new JobManager(context);
     }
 
     @Provides
-    @Singleton
     MainThread provideMainThread(MainThreadHandler mainThreadHandler) {
         return mainThreadHandler;
     }
@@ -67,13 +64,11 @@ public class GlobalDomainModule {
     }
 
     @Provides
-    @Singleton
-    public DatabaseManager provideDbManager(@ForApplication Context context) {
+    public DatabaseManager provideDbManager(Context context) {
         return new DatabaseManager(context);
     }
 
     @Provides
-    @Singleton
     public DatabaseHelper provideDataBaseHelper(DatabaseManager dbManager) {
         return dbManager.getHelper();
     }

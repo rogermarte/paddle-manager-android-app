@@ -19,6 +19,11 @@ import javax.inject.Inject;
 
 import butterknife.OnClick;
 import es.rogermartinez.paddlemanager.R;
+import es.rogermartinez.paddlemanager.base.AndroidComponent;
+import es.rogermartinez.paddlemanager.base.DaggerAndroidComponent;
+import es.rogermartinez.paddlemanager.base.DaggerGlobalComponent;
+import es.rogermartinez.paddlemanager.base.GlobalComponent;
+import es.rogermartinez.paddlemanager.base.domain.GlobalDomainModule;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
@@ -39,6 +44,8 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private GlobalComponent component;
+
 
     List<Player> players;
 
@@ -57,6 +64,13 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
+        component = DaggerGlobalComponent
+                .builder()
+
+                .build();
+        component.inject(this);
+
         controller.setView(this);
         controller.search();
     }

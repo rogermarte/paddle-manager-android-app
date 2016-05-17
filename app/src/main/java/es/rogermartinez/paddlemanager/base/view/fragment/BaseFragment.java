@@ -15,12 +15,6 @@ import es.rogermartinez.paddlemanager.base.view.activity.BaseActivity;
 public abstract class BaseFragment extends Fragment {
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((BaseActivity) this.getActivity()).inject(this);
-    }
-
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);

@@ -10,8 +10,7 @@ import es.rogermartinez.paddlemanager.editplayer.view.fragment.EditPlayerFragmen
 /**
  * Created by roger.martinez on 15/11/15.
  */
-@Module(injects = {EditPlayerActivity.class, EditPlayerFragment.class}, complete = false,
-        library = true)
+@Module
 public class EditPlayerViewModule {
 
     @Provides

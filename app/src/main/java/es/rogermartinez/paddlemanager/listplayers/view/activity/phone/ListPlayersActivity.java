@@ -1,7 +1,6 @@
 package es.rogermartinez.paddlemanager.listplayers.view.activity.phone;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.view.activity.DrawerActivity;

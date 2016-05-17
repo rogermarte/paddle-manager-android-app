@@ -23,7 +23,7 @@ import es.rogermartinez.paddlemanager.search.domain.model.QueryPlayer;
 /**
  * Created by roger.martinez on 13/11/15.
  */
-@Module(complete = false, library = true)
+@Module
 public class SearchPlayerDataSourceModule {
     private static final String LOGTAG = "SearchPlayerDSModule";
 

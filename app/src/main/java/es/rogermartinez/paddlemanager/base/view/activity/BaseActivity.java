@@ -44,7 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.screen_fade_in, R.anim.screen_fade_out);
-        inject(this);
         ButterKnife.setDebug(BuildConfig.DEBUG);
         ButterKnife.bind(this);
         viewErrorHandler = new ViewErrorHandler(bus, this);
@@ -67,12 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    }
-
-    public void inject(Object object) {
-        // Perform injection so that when this call returns all dependencies will be available
-        // for use.
-        ((BaseApplication) getApplication()).inject(object);
     }
 
     public void onError(ErrorEvent event) {

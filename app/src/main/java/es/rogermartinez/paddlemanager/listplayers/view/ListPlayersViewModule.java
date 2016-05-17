@@ -15,8 +15,7 @@ import es.rogermartinez.paddlemanager.listplayers.view.fragment.ListPlayersActiv
 /**
  *
  */
-@Module(injects = {ListPlayersActivity.class, ListPlayersActivityFragment.class}, complete = false,
-        library = true)
+@Module
 public class ListPlayersViewModule {
     @Provides
     PrepareListPlayersController providePlayersController(SearchPlayers searchPlayers){

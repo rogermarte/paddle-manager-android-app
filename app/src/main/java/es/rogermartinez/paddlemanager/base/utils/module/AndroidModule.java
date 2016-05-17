@@ -31,7 +31,7 @@ import es.rogermartinez.paddlemanager.base.application.BaseApplication;
  * A module for Android-specific dependencies which require a {@link android.content.Context} or
  * {@link android.app.Application} to create.
  */
-@Module(library = true)
+@Module
 public class AndroidModule {
     private final BaseApplication application;
 
@@ -44,11 +44,10 @@ public class AndroidModule {
      * {@link ForApplication @Annotation} to explicitly differentiate it from an activity context.
      */
     @Provides
-    @Singleton
-    @ForApplication
     Context provideApplicationContext() {
         return application;
     }
-    @Provides @Singleton
+
+    @Provides
     Bus provideBusProvider() {	return new MainThreadBus(); }
 }

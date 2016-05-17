@@ -7,7 +7,7 @@ import es.rogermartinez.paddlemanager.editplayer.datasource.db.impl.CreatePlayer
 /**
  * Created by roger.martinez on 17/11/15.
  */
-@Module(complete = false, library = true)
+@Module
 public class EditPlayerDatasourceModule {
     @Provides
     public CreatePlayerDataSource providesCreatePlayerDataSource(CreatePlayerDataSourceImpl dataSource){
