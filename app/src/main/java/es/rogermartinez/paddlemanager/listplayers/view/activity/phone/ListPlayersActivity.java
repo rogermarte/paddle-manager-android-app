@@ -20,6 +20,7 @@ public class ListPlayersActivity extends DrawerActivity implements HasComponent<
     private void initializeInjector(){
         this.listPlayersComponent = DaggerListPlayersComponent.builder()
                 .applicationComponent(getApplicationComponent())
+
                 .activityModule(getActivityModule())
                 .build();
     }

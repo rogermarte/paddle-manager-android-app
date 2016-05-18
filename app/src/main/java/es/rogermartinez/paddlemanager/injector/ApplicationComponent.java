@@ -27,5 +27,5 @@ public interface ApplicationComponent {
     Bus getBusProvider();
     JobManager getJobManager();
     MainThread getMainThread();
-    Map<QueryPlayer, QueryPlayer> getSearchPlayersCache();
+    //Map<QueryPlayer, QueryPlayer> getSearchPlayersCache();
 }

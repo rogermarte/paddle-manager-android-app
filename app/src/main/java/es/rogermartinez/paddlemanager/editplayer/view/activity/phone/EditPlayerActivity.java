@@ -8,16 +8,28 @@ import android.util.Log;
 import android.view.View;
 
 import es.rogermartinez.paddlemanager.R;
+import es.rogermartinez.paddlemanager.base.daggerutils.HasComponent;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.view.activity.BaseActivity;
 import es.rogermartinez.paddlemanager.editplayer.view.fragment.EditPlayerFragment;
+import es.rogermartinez.paddlemanager.injector.DaggerEditPlayerComponent;
+import es.rogermartinez.paddlemanager.injector.EditPlayerComponent;
 
 /**
  * Created by roger.martinez on 15/11/15.
  */
-public class EditPlayerActivity extends BaseActivity {
+public class EditPlayerActivity extends BaseActivity implements HasComponent<EditPlayerComponent>{
 
     private EditPlayerFragment fragment;
+
+    private EditPlayerComponent editPlayerComponent;
+
+    private void initializeInjector(){
+        editPlayerComponent = DaggerEditPlayerComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,6 +37,8 @@ public class EditPlayerActivity extends BaseActivity {
         setContentView(R.layout.activity_edit_player);
 
         setTitle(getString(R.string.add_player));
+
+        initializeInjector();
 
         if (savedInstanceState == null){
             fragment = new EditPlayerFragment();
@@ -65,5 +79,10 @@ public class EditPlayerActivity extends BaseActivity {
     @Override
     protected boolean showError(ErrorEvent event) {
         return false;
+    }
+
+    @Override
+    public EditPlayerComponent getComponent() {
+        return editPlayerComponent;
     }
 }

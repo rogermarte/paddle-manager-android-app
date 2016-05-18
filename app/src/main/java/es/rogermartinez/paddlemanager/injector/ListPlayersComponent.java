@@ -17,13 +17,11 @@ import es.rogermartinez.paddlemanager.search.datasource.SearchPlayerDataSourceMo
         dependencies = ApplicationComponent.class,
         modules = {
                 ActivityModule.class,
-                ListPlayersViewModule.class,
+                //ListPlayersViewModule.class,
                 ListPlayerDomainModule.class,
                 SearchPlayerDataSourceModule.class,
                 GlobalDomainModule.class}
 )
 public interface ListPlayersComponent extends ActivityComponent {
     void inject(ListPlayersActivityFragment listPlayersActivityFragment);
-
-    PrepareListPlayersController getPlayersController();
 }

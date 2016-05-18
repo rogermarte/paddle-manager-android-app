@@ -27,14 +27,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewErro
 
     protected Toolbar toolbar;
 
-    /**
-     * @return the IconState that this Activity should show by default.
-     * Usually it will be MaterialMenuDrawable.IconState.ARROW or MaterialMenuDrawable.IconState.BURGER
-     */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getApplicationComponent().inject(this);
         overridePendingTransition(R.anim.screen_fade_in, R.anim.screen_fade_out);
         ButterKnife.setDebug(BuildConfig.DEBUG);
         ButterKnife.bind(this);

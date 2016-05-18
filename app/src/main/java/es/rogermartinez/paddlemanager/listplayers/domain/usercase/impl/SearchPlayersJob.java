@@ -6,6 +6,7 @@ import com.path.android.jobqueue.Params;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import es.rogermartinez.paddlemanager.base.domain.DomainErrorHandler;
 import es.rogermartinez.paddlemanager.base.domain.interactor.MainThread;
