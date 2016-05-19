@@ -20,6 +20,7 @@ import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
 import es.rogermartinez.paddlemanager.editplayer.view.controller.PrepareEditPlayerController;
+import es.rogermartinez.paddlemanager.injector.EditPlayerComponent;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 /**
@@ -52,6 +53,12 @@ public class EditPlayerFragment extends BaseFragment implements PrepareEditPlaye
     EditText mPlayerComment;
 
     private View rootView;
+
+    @Override
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+        this.getComponent(EditPlayerComponent.class).inject(this);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

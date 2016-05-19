@@ -13,7 +13,7 @@ import es.rogermartinez.paddlemanager.editplayer.domain.usercase.impl.UpdatePlay
 /**
  * Created by roger.martinez on 17/11/15.
  */
-@Module(complete = false, library = true)
+@Module
 public class EditPlayerDomainModule {
     @Provides
     public SelectPlayer providesSelectPlayer(SelectPlayerJob job){

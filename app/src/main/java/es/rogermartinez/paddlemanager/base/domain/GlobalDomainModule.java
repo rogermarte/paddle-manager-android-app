@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import es.rogermartinez.paddlemanager.base.daggerutils.ForApplication;
+import es.rogermartinez.paddlemanager.base.daggerutils.PerActivity;
 import es.rogermartinez.paddlemanager.base.datasource.dao.DatabaseHelper;
 import es.rogermartinez.paddlemanager.base.datasource.dao.DatabaseManager;
 import es.rogermartinez.paddlemanager.base.domain.interactor.MainThread;
@@ -23,23 +24,13 @@ import es.rogermartinez.paddlemanager.base.domain.interactor.impl.MainThreadHand
 /**
  * This module provide global dependencies for all domain objects.
  */
-@Module(complete = false,
-        library = true)
+@Module
 public class GlobalDomainModule {
-    @Provides
-    @Singleton
-    JobManager provideJobManager(@ForApplication Context context) {
-        return new JobManager(context);
-    }
 
-    @Provides
-    @Singleton
-    MainThread provideMainThread(MainThreadHandler mainThreadHandler) {
-        return mainThreadHandler;
-    }
 
     @Provides
     @Named("zulu_with_millis")
+    @PerActivity
     SimpleDateFormat provideSimpleDateFormatZuluWithMillis() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         // This is to solve problem with list offer in Zulu hour
@@ -49,6 +40,7 @@ public class GlobalDomainModule {
 
     @Provides
     @Named("zulu")
+    @PerActivity
     SimpleDateFormat provideSimpleDateFormatZulu() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -57,23 +49,19 @@ public class GlobalDomainModule {
 
     @Provides
     @Named("general")
+    @PerActivity
     SimpleDateFormat provideSimpleDateFormatGeneral() {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
     }
 
     @Provides
-    DomainErrorHandler provideDomainErrorHandler(Bus bus) {
-        return new DomainErrorHandler(bus);
-    }
-
-    @Provides
-    @Singleton
-    public DatabaseManager provideDbManager(@ForApplication Context context) {
+    @PerActivity
+    public DatabaseManager provideDbManager(Context context) {
         return new DatabaseManager(context);
     }
 
     @Provides
-    @Singleton
+    @PerActivity
     public DatabaseHelper provideDataBaseHelper(DatabaseManager dbManager) {
         return dbManager.getHelper();
     }

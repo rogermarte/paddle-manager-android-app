@@ -1,10 +1,8 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +21,7 @@ import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
 import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
+import es.rogermartinez.paddlemanager.injector.ListPlayersComponent;
 import es.rogermartinez.paddlemanager.listplayers.view.activity.phone.ListPlayersActivity;
 import es.rogermartinez.paddlemanager.listplayers.view.adapter.ListPlayersAdapter;
 import es.rogermartinez.paddlemanager.listplayers.view.controller.PrepareListPlayersController;
@@ -57,10 +56,16 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
         controller.setView(this);
         controller.search();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getComponent(ListPlayersComponent.class).inject(this);
+    }
 
     @Override
     public boolean showError(ErrorEvent event) {
