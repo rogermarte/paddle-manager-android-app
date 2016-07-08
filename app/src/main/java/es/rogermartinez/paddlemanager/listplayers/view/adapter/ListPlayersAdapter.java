@@ -2,6 +2,7 @@ package es.rogermartinez.paddlemanager.listplayers.view.adapter;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,20 @@ public class ListPlayersAdapter extends RecyclerView.Adapter<ListPlayersAdapter.
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView mTVPlayerName;
         public TextView mTVPlayerLevel;
-        public ViewHolder(View v) {
-            super(v);
-            mTVPlayerName = (TextView)v.findViewById(R.id.tv_player_name);
-            mTVPlayerLevel = (TextView)v.findViewById(R.id.tv_player_level);
+        public ViewHolder(View view) {
+            super(view);
+            view.setOnClickListener(this);
+            mTVPlayerName = (TextView)view.findViewById(R.id.tv_player_name);
+            mTVPlayerLevel = (TextView)view.findViewById(R.id.tv_player_level);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("AD", "onClick " + getAdapterPosition() + " " + getItemId());
         }
     }
 
