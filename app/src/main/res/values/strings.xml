@@ -25,4 +25,5 @@
     <string name="error_field_position">La posición es obligatoria</string>
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="player_image_description">Player image</string>
 </resources>

@@ -1,5 +1,6 @@
 package es.rogermartinez.paddlemanager.listplayers.view.adapter;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,8 +56,19 @@ public class ListPlayersAdapter extends RecyclerView.Adapter<ListPlayersAdapter.
         // - replace the contents of the view with that element
         Player player = mDataset.get(position);
         holder.mTVPlayerName.setText(player.getName());
-        String[] levels = holder.itemView.getContext().getResources().getStringArray(R.array.levels_array);
-        holder.mTVPlayerLevel.setText(String.valueOf(levels[player.getLevel()-1]));
+        Resources resources = holder.itemView.getContext().getResources();
+        String[] levels = resources.getStringArray(R.array.levels_array);
+        String[] sexs = resources.getStringArray(R.array.sex_array);
+        String[] positions = resources.getStringArray(R.array.positions_array);
+
+        String secondaryContent = "";
+        secondaryContent += String.valueOf(sexs[player.getSex()-1]);
+        secondaryContent += " | ";
+        secondaryContent += String.valueOf(positions[player.getPosition()-1]);
+        secondaryContent += " | ";
+        secondaryContent += String.valueOf(levels[player.getLevel()-1]);
+
+        holder.mTVPlayerLevel.setText(secondaryContent);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

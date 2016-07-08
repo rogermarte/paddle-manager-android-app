@@ -39,6 +39,9 @@ public class SearchPlayerDataSourceFromBBDD implements SearchPlayerDataSource {
         p.setName(player.getName());
         p.setLevel(player.getLevel());
         p.setId(player.getId());
+        p.setComment(player.getComment());
+        p.setSex(player.getSex());
+        p.setPosition(player.getPosition());
         return p;
     }
 }
