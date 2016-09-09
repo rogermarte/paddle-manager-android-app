@@ -28,9 +28,31 @@
         <item name="android:layout_height">@dimen/toolbar_home_button</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
+    <style name="ToolbarBackButton">
+        <item name="navigationIcon">@drawable/ic_arrow_back_24dp</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
     <style name="divider">
         <item name="android:background">@color/divider</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/divider</item>
+    </style>
+
+    <style name="spinner_material"> <!-- used for MaterialSpinner widgets -->
+        <item name="android:focusable">true</item>
+        <item name="ms_alignLabels">false</item>
+        <item name="ms_floatingLabelColor">@color/font_color_sec</item>
+        <item name="ms_baseColor">@color/edit_text_bottom_line</item>
+        <item name="ms_errorColor">@color/error</item>
+        <item name="ms_arrowColor">@color/font_color_sec</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+    </style>
+
+    <style name="spinner_material_form" parent="spinner_material"> <!-- used for MaterialSpinner widgets -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/gap_small</item>
     </style>
 </resources>

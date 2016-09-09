@@ -25,7 +25,7 @@ public class CreatePlayerJob extends UserCaseJob implements CreatePlayer {
     @Inject
     public CreatePlayerJob(JobManager jobManager, MainThread mainThread,
                            DomainErrorHandler domainErrorHandler, CreatePlayerDataSource createPlayerDataSource){
-        super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY), domainErrorHandler);
+        super(jobManager, mainThread, new Params(UserCaseJob.DEFAULT_PRIORITY).setRequiresNetwork(false), domainErrorHandler);
         this.createPlayerDataSource = createPlayerDataSource;
     }
 

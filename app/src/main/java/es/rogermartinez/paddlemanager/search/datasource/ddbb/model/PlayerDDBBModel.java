@@ -20,20 +20,28 @@ public class PlayerDDBBModel {
     private String name = "";
 
     @DatabaseField
-    private String surname = "";
+    private int level = 0;
 
     @DatabaseField
-    private int level = 0;
+    private int sex = 0;
+
+    @DatabaseField
+    private int position = 0;
+
+    @DatabaseField
+    private String comment = "";
 
     public PlayerDDBBModel(){
 
     }
 
-    public PlayerDDBBModel(long id, String name, String surname, int level){
+    public PlayerDDBBModel(long id, String name, int level, int sex, int position, String comment){
         this.id = id;
         this.name = name;
-        this.surname = surname;
         this.level = level;
+        this.sex = sex;
+        this.position = position;
+        this.comment = comment;
     }
 
     public long getId() {
@@ -52,19 +60,34 @@ public class PlayerDDBBModel {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public int getLevel() {
         return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
+    }
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -1,10 +1,8 @@
 package es.rogermartinez.paddlemanager.listplayers.view.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +21,7 @@ import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
 import es.rogermartinez.paddlemanager.base.domain.model.Player;
 import es.rogermartinez.paddlemanager.base.view.fragment.BaseFragment;
 import es.rogermartinez.paddlemanager.editplayer.view.activity.phone.EditPlayerActivity;
+import es.rogermartinez.paddlemanager.injector.ListPlayersComponent;
 import es.rogermartinez.paddlemanager.listplayers.view.activity.phone.ListPlayersActivity;
 import es.rogermartinez.paddlemanager.listplayers.view.adapter.ListPlayersAdapter;
 import es.rogermartinez.paddlemanager.listplayers.view.controller.PrepareListPlayersController;
@@ -36,13 +35,9 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Inject
     PrepareListPlayersController controller;
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     List<Player> players;
-
-    private View rootView;
 
     public ListPlayersActivityFragment() {
     }
@@ -50,17 +45,23 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_players, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_players, container, false);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
         controller.setView(this);
         controller.search();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.getComponent(ListPlayersComponent.class).inject(this);
+    }
 
     @Override
     public boolean showError(ErrorEvent event) {
@@ -74,11 +75,11 @@ public class ListPlayersActivityFragment extends BaseFragment implements Prepare
             players = searchPlayersResult.getPlayers();
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
-            mRecyclerView = (RecyclerView)getActivity().findViewById(R.id.rv_players);
+            RecyclerView mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_players);
             mRecyclerView.setHasFixedSize(true);
 
             // use a linear layout manager
-            mLayoutManager = new LinearLayoutManager(getActivity());
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
