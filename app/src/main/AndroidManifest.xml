@@ -24,6 +24,9 @@
         <activity android:name=".editplayer.view.activity.phone.EditPlayerActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1b55036c199556a7bbc95fd0b8b1e2b0f19cc1b4" />
     </application>
 
 
