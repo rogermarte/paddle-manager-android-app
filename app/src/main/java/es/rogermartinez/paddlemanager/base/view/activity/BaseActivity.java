@@ -2,7 +2,6 @@ package es.rogermartinez.paddlemanager.base.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.appcompat.BuildConfig;
 import android.support.v7.widget.Toolbar;
 
 import com.squareup.otto.Bus;
@@ -10,6 +9,7 @@ import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import es.rogermartinez.paddlemanager.BuildConfig;
 import es.rogermartinez.paddlemanager.R;
 import es.rogermartinez.paddlemanager.base.application.AndroidApplication;
 import es.rogermartinez.paddlemanager.base.domain.events.ErrorEvent;
