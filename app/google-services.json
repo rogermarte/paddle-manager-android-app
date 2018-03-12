@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "554281172413",
-    "firebase_url": "https://api-padel-manager.firebaseio.com",
-    "project_id": "api-padel-manager",
-    "storage_bucket": "api-padel-manager.appspot.com"
+    "project_number": "1073014894255",
+    "firebase_url": "https://paddle-manager.firebaseio.com",
+    "project_id": "paddle-manager",
+    "storage_bucket": "paddle-manager.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:554281172413:android:f0875924178b00d1",
+        "mobilesdk_app_id": "1:1073014894255:android:f0875924178b00d1",
         "android_client_info": {
           "package_name": "es.rogermartinez.paddlemanager"
         }
       },
       "oauth_client": [
         {
-          "client_id": "554281172413-ojnlnoed5j9238kko2amh43mskcqk4as.apps.googleusercontent.com",
+          "client_id": "1073014894255-g8at6fmjjqs3lsm316mn7raqcg5nc0g6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "es.rogermartinez.paddlemanager",
-            "certificate_hash": "9C65D17D343BA52B4BC4C50402435DC00235B4AF"
+            "certificate_hash": "98d9538281776d0a86a8a47b27bb23aeb8eb0b19"
           }
         },
         {
-          "client_id": "554281172413-u55v99dpturm83f4r8u681acn08b2sis.apps.googleusercontent.com",
+          "client_id": "1073014894255-1vedaea2lpc24ubcufq3pjuiupnkc7nb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD0HO1qSYDil7zfSV_C1uN_sJlB8cQBxx8"
+          "current_key": "AIzaSyCWTnPVXnVE0vyWIuamoAIj4dP4uKpkKlE"
         }
       ],
       "services": {
@@ -40,41 +40,10 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "554281172413-u55v99dpturm83f4r8u681acn08b2sis.apps.googleusercontent.com",
+              "client_id": "1073014894255-1vedaea2lpc24ubcufq3pjuiupnkc7nb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:554281172413:android:4a433e9234729460",
-        "android_client_info": {
-          "package_name": "es.rogermartinez.paddlemanager.debug"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "554281172413-u55v99dpturm83f4r8u681acn08b2sis.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD0HO1qSYDil7zfSV_C1uN_sJlB8cQBxx8"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
